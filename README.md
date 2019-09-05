@@ -1,4 +1,6 @@
 # time-keepr
+Previous repo of this project https://github.com/jajan20/time-keeper
+Had some issues with git, Vue create etc. should be working now.
 
 ## Project setup
 ```
