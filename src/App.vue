@@ -122,5 +122,20 @@ $glitter: #E8EEF2;
       }
     }
   }
+  #submit {
+    background-color: deepskyblue;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+      filter: brightness(80%);
+    }
+  }
 }
 </style>
