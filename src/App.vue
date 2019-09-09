@@ -1,53 +1,115 @@
 <template>
   <div id="app">
     <form>
-
-      <div class="input-wrapper">
-      <label for="start-time">Hoe laat ben je begonnen?</label>
-        <div>
-          <input id="start-hours" type="tel" placeholder="09" maxlength="2">
-          <span>:</span>
-          <input id="start-minutes" type="tel" placeholder="00" maxlength="2">
-        </div>
-      </div>
-
-      <div class="input-wrapper">
-      <label for="end-time">Hoe laat was je dienst voorbij?</label>
-        <div>
-          <input id="end-hours" type="tel" placeholder="18" maxlength="2">
-          <span>:</span>
-          <input id="end-minutes" type="tel" placeholder="00" maxlength="2">
-        </div>
-      </div>
       
-      <h2>Welke pauzes heb je gehad?</h2>
-      <div class="checkboxes">
-        <div class="checkbox-wrapper">
-          <input id="first-break" type="checkbox" value="15">
-          <label for="first-break">15min</label>
-        </div>
-
-        <div class="checkbox-wrapper">
-          <input id="second-break" type="checkbox" value="30">
-          <label for="second-break">30min</label>
-        </div>
-        
-        <div class="checkbox-wrapper">
-          <input id="third-break" type="checkbox" value="15">
-          <label for="third-break">15min</label>
-        </div>
+      <div class="input-wrapper">
+        <label for="start-time">Hoe laat ben je begonnen?</label>
+          <div>
+            <input id="start-hours" type="tel" placeholder="09" maxlength="2">
+            <span>:</span>
+            <input id="start-minutes" type="tel" placeholder="00" maxlength="2">
+          </div>
+      </div>
+    
+      <div class="input-wrapper">
+        <label for="end-time">Hoe laat was je dienst voorbij?</label>
+          <div>
+            <input id="end-hours" type="tel" placeholder="18" maxlength="2">
+            <span>:</span>
+            <input id="end-minutes" type="tel" placeholder="00" maxlength="2">
+          </div>
       </div>
 
-      <button id="submit" type="submit">Next</button>
+      <h2>Welke pauzes heb je gehad?</h2>
+        <div class="checkboxes">
+          <div class="checkbox-wrapper">
+            <input id="first-break" type="checkbox" value="15">
+            <label for="first-break">15min</label>
+          </div>
+
+          <div class="checkbox-wrapper">
+            <input id="second-break" type="checkbox" value="30">
+            <label for="second-break">30min</label>
+          </div>
+
+          <div class="checkbox-wrapper">
+            <input id="third-break" type="checkbox" value="15">
+            <label for="third-break">15min</label>
+          </div>
+        </div>
+
+      <button v-on:click="button" id="submit" type="submit">Next</button>
     </form>
   </div>
 </template>
 
+
+
 <script>
 export default {
   data() {
-    return {
-      message: 'Jamie'
+    return {}
+  },
+  methods: {
+    button: function(event) {
+      event.preventDefault()
+       let object = {
+        startTime: 0,
+        endTime: 0,  
+        firstBreak: 0,
+        secondBreak: 0,
+        thirdBreak: 0
+    }
+
+    let submitBtn = document.querySelector('#submit')
+    let startHoursInput = document.querySelector('#start-hours')
+    let startMinutesInput = document.querySelector('#start-minutes')
+    let endHoursInput = document.querySelector('#end-hours')
+    let endMinutesInput = document.querySelector('#end-minutes')
+    let firstBreak = document.querySelector('#first-break')
+    let secondBreak = document.querySelector('#second-break')
+    let thirdBreak = document.querySelector('#third-break')
+
+    let checkBreak = (elements) => {
+        elements.forEach(element => {
+            if (element.checked) {
+                switch(element.id) {
+                    case firstBreak.id: object.firstBreak = parseInt(firstBreak.value, 10); break
+                    case secondBreak.id: object.secondBreak = parseInt(secondBreak.value, 10); break
+                    case thirdBreak.id: object.thirdBreak = parseInt(thirdBreak.value, 10); break
+                }
+            }
+        })
+    }
+
+    let roundMinutes = (m) => {
+      let minutes = 0
+      if (m < 15 && m > 0) { minutes = 0 } 
+      if (m < 30 && m > 15) { minutes = 15 } 
+      if (m < 45 && m > 30) { minutes = 30 }
+      if (m < 60 && m > 46) { minutes = 45 }
+      return minutes
+    }
+
+    let convertTime = (time) => {
+      var number = time
+      var hours = (number / 60)
+      var rhours = Math.floor(hours)
+      var minutes = (hours - rhours) * 60
+      var rminutes = Math.round(minutes)
+      return rhours + " hour(s) and " + rminutes + " minute(s)."
+    }
+            let totalStartMinutes = roundMinutes(startMinutesInput.value * 1)
+        let totalStartHoursInMinutes = startHoursInput.value * 60
+        let totalEndMinutes = roundMinutes(endMinutesInput.value * 1)
+        let totalEndHoursInMinutes = endHoursInput.value * 60
+
+        object.startTime = totalStartHoursInMinutes + totalStartMinutes
+        object.endTime = totalEndHoursInMinutes + totalEndMinutes
+                checkBreak([firstBreak, secondBreak, thirdBreak])
+        
+        object.workedHours = convertTime(object.endTime - object.startTime - object.firstBreak - object.secondBreak - object.thirdBreak)
+        console.log(object)
     }
   }
 }
@@ -122,6 +184,7 @@ $glitter: #E8EEF2;
       }
     }
   }
+  
   #submit {
     background-color: deepskyblue;
     margin-top: 10px;
