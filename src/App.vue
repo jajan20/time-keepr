@@ -5,18 +5,18 @@
       <div class="input-wrapper">
         <label for="start-time">Hoe laat ben je begonnen?</label>
           <div>
-            <input id="start-hours" type="tel" placeholder="09" maxlength="2">
+            <input @keyup="nextInput" class="input" id="start-hours" type="tel" placeholder="09" maxlength="2">
             <span>:</span>
-            <input id="start-minutes" type="tel" placeholder="00" maxlength="2">
+            <input @keyup="nextInput" class="input" id="start-minutes" type="tel" placeholder="00" maxlength="2">
           </div>
       </div>
     
       <div class="input-wrapper">
         <label for="end-time">Hoe laat was je dienst voorbij?</label>
           <div>
-            <input id="end-hours" type="tel" placeholder="18" maxlength="2">
+            <input @keyup="nextInput" class="input" id="end-hours" type="tel" placeholder="18" maxlength="2">
             <span>:</span>
-            <input id="end-minutes" type="tel" placeholder="00" maxlength="2">
+            <input  @keyup="nextInput" class="input" id="end-minutes" type="tel" placeholder="00" maxlength="2">
           </div>
       </div>
 
@@ -42,8 +42,6 @@
     </form>
   </div>
 </template>
-
-
 
 <script>
 export default {
@@ -113,6 +111,29 @@ export default {
 
       object.workedHours = convertTime(object.endTime - object.startTime - object.firstBreak - object.secondBreak - object.thirdBreak)
       console.log(object)
+      return object
+    },
+    nextInput: function(event) {
+
+      let selectInput = document.querySelectorAll('.input')
+      
+      var getNextSibling = function (elem, selector) {
+	      var sibling = elem.nextElementSibling
+        while (sibling) {
+		      if (sibling.matches(selector)) return sibling;
+		      sibling = sibling.nextElementSibling
+        }
+      }
+
+      selectInput.forEach((input, index) => {
+        console.log(index)
+      })
+      
+      if (event.target.value.length == 2) {
+        console.log(getNextSibling(selectInput))
+      } else {
+        console.log('Broken')
+      }
     }
   }
 }

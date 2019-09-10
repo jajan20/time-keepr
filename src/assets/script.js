@@ -63,3 +63,10 @@ window.onload = () => {
         console.log(object)
     })
 }
+
+
+inputs.forEach(function(singleInput, index) {
+    singleInput.addEventListener('keyup', () => {
+        
+    })
+})
