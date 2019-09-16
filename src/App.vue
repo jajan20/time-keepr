@@ -126,13 +126,13 @@ export default {
       }
 
       selectInput.forEach((input, index) => {
-        console.log(index)
+        // console.log(index)
       })
       
       if (event.target.value.length == 2) {
-        console.log(getNextSibling(selectInput))
+        // console.log(getNextSibling(selectInput))
       } else {
-        console.log('Broken')
+        // console.log('Broken')
       }
     }
   }
