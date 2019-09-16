@@ -41,13 +41,15 @@ I believe a simple web application would be a tremendous help. Imagine a situati
 - [ ] When maximum input is met continue to next input
 
 ## Issues along the way.
+### Octal literals
 > Octal literals are not allowed in strict mode
 
 [Source](https://stackoverflow.com/questions/23609042/how-to-avoid-octal-literals-are-not-allowed-in-strict-mode-with-createwritestr)
 
+### Auto tab input fields
 > Issues with auto tab input fields
 
-So one of the most troublesome issues that I had was getting the auto tab function to work.
+So one of the most troublesome issues that I had was getting the auto tab function to work.<br>
 **How it should work:** When a user inputs something in the input field (with a attribute of ```maxlength="2"```) as soon as the condition is met the focus should automaticly go to the next input field.
 
 **What went wrong:** First I tried to make a simple fiddle to get the hang of it. I created four input fields and used ```nextElementSibling``` function to select the next element. This worked great. Sadly this didn't work because of the different set-up in my HTML.
