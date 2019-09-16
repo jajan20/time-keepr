@@ -34,11 +34,22 @@ I believe a simple web application would be a tremendous help. Imagine a situati
 
 ## List of Requirements
 - [ ] Simple, intuitive interface
-- [ ] Accessible on smartphone browser
-- [ ] User shouldn't have to think to much
+- [x] Accessible on smartphone browser
+- [x] User shouldn't have to think to much
 - [ ] Design should be forgiving, when an error occurs this should be fixed elegantly.
+- [x] Input fields should have a maximum input length
+- [ ] When maximum input is met continue to next input
 
 ## Issues along the way.
 > Octal literals are not allowed in strict mode
 
 [Source](https://stackoverflow.com/questions/23609042/how-to-avoid-octal-literals-are-not-allowed-in-strict-mode-with-createwritestr)
+
+> Issues with auto tab input fields
+
+So one of the most troublesome issues that I had was getting the auto tab function to work.
+**How it should work:** When a user inputs something in the input field (with a attribute of ```maxlength="2"```) as soon as the condition is met the focus should automaticly go to the next input field.
+
+**What went wrong:** First I tried to make a simple fiddle to get the hang of it. I created four input fields and used ```nextElementSibling``` function to select the next element. This worked great. Sadly this didn't work because of the different set-up in my HTML.
+
+```nextElementSibling``` will go the next element within the same container. Since my inputs are in seperate containers it wouldn't work.
