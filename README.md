@@ -1,6 +1,12 @@
 # Time Keepr
-Previous repo of this project https://github.com/jajan20/time-keeper
-Had some issues with git, Vue create etc. should be working now.
+Started with a different repo, had some issues.
+Below you'll find a table with URL's to all the correct repo's.
+
+| Repository  | URL                                        |
+|-------------|--------------------------------------------|
+| Frontend v1 | https://github.com/jajan20/time-keeper     |
+| Frontend V2 | https://github.com/jajan20/time-keepr      |
+| Backend     | https://github.com/jajan20/time-keepr-nuxt |
 
 ## Table of Content
 - [Project Setup](#project-setup)
